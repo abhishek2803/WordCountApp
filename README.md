@@ -52,6 +52,11 @@ WordCountApp/target/wordcount-1.0-SNAPSHOT.jar - executable jar  without the dep
 WordCountApp/target/test-classes - compiled test classes
 WordCountApp/target/site/jacoco/index.html - jacoco test covergae report
 
+5. If you want to run using the JAR file
+ Goto root project folder and execute :  java -cp target/wordcount-1.0-SNAPSHOT-jar-with-dependencies.jar  com.as.wordcount.Main
+ 
+![image](https://user-images.githubusercontent.com/9560912/231026726-c641cd71-c7fb-462a-a1b3-2dca202c9374.png)
+
 
 
 
