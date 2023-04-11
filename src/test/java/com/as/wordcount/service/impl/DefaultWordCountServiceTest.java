@@ -18,24 +18,24 @@ class DefaultWordCountServiceTest
 	@BeforeEach
 	void setUp()
 	{
-		wordCountService = new DefaultWordCountService(CONTENT);
+		wordCountService = new DefaultWordCountService();
 	}
 
 
 	@Test
 	void countWordsInDescendingOrderShouldBeNullIfContentIsNull()
 	{
-		wordCountService = new DefaultWordCountService(null);
+		wordCountService = new DefaultWordCountService();
 		assertThatExceptionOfType(NullPointerException.class)
-				.isThrownBy(() -> wordCountService.countWordsInDescendingOrder())
+				.isThrownBy(() -> wordCountService.countWordsInDescendingOrder(null))
 				.withNoCause();
 	}
 
 	@Test
 	void countWordsInDescendingOrderShouldBeOfCount1ifContentContains1Word()
 	{
-		wordCountService = new DefaultWordCountService("asasassDSADASDASDSA");
-		var wordCounts = wordCountService.countWordsInDescendingOrder();
+
+		var wordCounts = wordCountService.countWordsInDescendingOrder("asasassDSADASDASDSA");
 		assertThat(wordCounts).isNotNull();
 		assertThat(wordCounts).size().isEqualTo(1);
 	}
@@ -43,14 +43,14 @@ class DefaultWordCountServiceTest
 	@Test
 	void countWordsInDescendingOrderShouldNotBeNullIfContentIsNotNull()
 	{
-		var wordCounts = wordCountService.countWordsInDescendingOrder();
+		var wordCounts = wordCountService.countWordsInDescendingOrder(CONTENT);
 		assertThat(wordCounts).isNotNull();
 	}
 
 	@Test
 	void countWordsInDescendingOrderShouldContainExpectedCountOfDistinctWords()
 	{
-		var wordCounts = wordCountService.countWordsInDescendingOrder();
+		var wordCounts = wordCountService.countWordsInDescendingOrder(CONTENT);
 		assertThat(wordCounts).isNotNull();
 		assertThat(wordCounts).size().isEqualTo(10);
 	}
@@ -58,7 +58,7 @@ class DefaultWordCountServiceTest
 	@Test
 	void countWordsInDescendingOrderShouldContainExpectedCountOfDistinctWordsInDescendingOrder()
 	{
-		var wordCounts = wordCountService.countWordsInDescendingOrder();
+		var wordCounts = wordCountService.countWordsInDescendingOrder(CONTENT);
 		assertThat(wordCounts).isNotNull();
 		assertThat(wordCounts).size().isEqualTo(10);
 		assertThat(wordCounts.get(0).getWord()).isEqualTo("of");
@@ -75,9 +75,9 @@ class DefaultWordCountServiceTest
 	@Test
 	void consistentWordCountAcross2ContentWhenWordsShuffled()
 	{
-		var wordCounts = wordCountService.countWordsInDescendingOrder();
-		wordCountService1 = new DefaultWordCountService(SHUFFLEDCONTENT);
-		var wordCounts1 = wordCountService1.countWordsInDescendingOrder();
+		var wordCounts = wordCountService.countWordsInDescendingOrder(CONTENT);
+		wordCountService1 = new DefaultWordCountService();
+		var wordCounts1 = wordCountService1.countWordsInDescendingOrder(SHUFFLEDCONTENT);
 		assertThat(wordCounts).isNotNull();
 		assertThat(wordCounts1).isNotNull();
 		assertThat(wordCounts).size().isEqualTo(wordCounts1.size());

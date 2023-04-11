@@ -20,12 +20,12 @@ public class Main
 		}
 		else
 		{
-			fileName = "file.txt";
+			fileName = "file.txt";//default file
 			log.info("Using default fileName: " + fileName);
 		}
 
 		var defaultFileReader = new DefaultFileReader(fileName);
-		var wordCounts = new DefaultWordCountService(defaultFileReader.readContent()).countWordsInDescendingOrder();
+		var wordCounts = new DefaultWordCountService().countWordsInDescendingOrder(defaultFileReader.readContent());
 		log.info("Count of distinct words in descending order {} ", wordCounts);
 	}
 }

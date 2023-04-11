@@ -16,12 +16,6 @@ public class DefaultWordCountService implements WordCountService
 {
 
 	public static final String REGEX = "\\W+";
-	private final String content;
-
-	public DefaultWordCountService(final String content)
-	{
-		this.content = content;
-	}
 
 	/**
 	 * Read the words in the String content and returns WordCount which contains distinct word and its respective counts
@@ -29,16 +23,17 @@ public class DefaultWordCountService implements WordCountService
 	 * @return List of distinct WordCount in descending order
 	 */
 	@Override
-	public List<WordCount> countWordsInDescendingOrder()
+	public List<WordCount> countWordsInDescendingOrder(final String content)
 	{
 		Objects.requireNonNull(content);
 
 		var stringLongMap = Pattern.compile(REGEX)
-				.splitAsStream(this.content.toLowerCase())
+				.splitAsStream(content.toLowerCase())
 				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
 		return stringLongMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.map(stringLongEntry -> new WordCount(stringLongEntry.getKey(), Math.toIntExact(stringLongEntry.getValue())))
+				.map(stringLongEntry -> WordCount.builder().word(stringLongEntry.getKey())
+						.count(Math.toIntExact(stringLongEntry.getValue())).build())
 				.collect(Collectors.toList());
 	}
 }

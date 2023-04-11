@@ -20,6 +20,10 @@ public class DefaultFileReader implements FileReader
 		this.fileName = fileName;
 	}
 
+	/***
+	 * Read the content of the file
+	 * @return content as String
+	 */
 	@Override
 	public String readContent()
 	{

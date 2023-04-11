@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface WordCountService
 {
-	List<WordCount> countWordsInDescendingOrder();
+	List<WordCount> countWordsInDescendingOrder(final String content);
 }
