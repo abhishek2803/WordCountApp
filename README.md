@@ -31,6 +31,10 @@ Description
 - Intellj IDE for development
 - It was built on MAC OS 
 
+Assumptions
+===========
+1. The file contains only words and no other special character like Jamie's etc. This has not been tested. 
+2. Words are consider case insensitive. E.g - Word is same as worD.
 
 How to Run
 ===========
