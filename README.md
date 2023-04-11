@@ -12,9 +12,9 @@ Repository contains included:
 ===========
 
 1. SRC - 
-      a. contains java classes under main/java/om/as/wordcount. Main.java contains the main method. There are couple of Java interface namely FieReader.java and WordCountService.java. DefaultFieReader constructor takes filePath as argument to initialise. It has a readContent mentod which reads the content of the file and returns the content. If file is not found, then it throws FileHandlingExcpetion(Runtime). Second interface is WordCountService which has a default implementation namely DefaultWordCountService.java, it takes String as constructor argument to initialise. Then it uses java11 stream and collectors api to convert it into a List of a DTO object WordCount in a descending order. Each WordCount DTO object contains Word and its Count.
+      a. contains java classes under main/java/om/as/wordcount. Main.java contains the main method. There are couple of Java interface namely FieReader.java and WordCountService.java. DefaultFieReader constructor takes filePath as argument to initialise. It has a readContent mentod which reads the content of the file and returns the content. If file is not found, then it throws FileHandlingExcpetion(Runtime). Second interface is WordCountService which has a default implementation namely DefaultWordCountService.java, it is a no argument constructor. Then it uses java11 stream and collectors api to convert it into a List of a immutable DTO object WordCount in a descending order. Each WordCount DTO object contains Word and its Count.
       b.test folder contains junit classes and resources.
-      c. Validation is used to make no null content or filename is passed to the methods. 
+      c. Validation is used to make no null content or filename is passed to the methods. If file not found then FileHandlingExcpetion is throwns. 
       d. 
 2. target directory which is generated while packaging the maven project. This primarly contains containing compiled files, executable jar, executable jar with dependencies, junit test classes and report. This is generated when  maven build life cycle commands are run.
 3. README file - description 
